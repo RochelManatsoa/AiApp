@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Se connecter{% endblock %}
+
+{% block body %}
+<div class="bg-gray-100 flex justify-center items-center h-screen">
+    <div class="w-full max-w-sm">
+        <form class="bg-white shadow-md rounded px-8 py-6">
+            {% if error %}
+                <div class="bg-red-500 text-white font-bold px-4 py-2 rounded-md">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+                    Nom d'utilisateur
+                </label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Nom d'utilisateur">
+            </div>
+            <div class="mb-6">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+                    Mot de passe
+                </label>
+                <input class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************">
+                <p class="text-red-500 text-xs italic">Veuillez entrer un mot de passe.</p>
+            </div>
+            <div class="flex items-center justify-between">
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline" type="button">
+                    Se connecter
+                </button>
+                <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
+                    Mot de passe oublié ?
+                </a>
+            </div>
+            <div class="flex items-center justify-center my-6">
+                <hr class="border-gray-300 border-t-2 flex-grow">
+                <span class="mx-4 text-gray-500 font-bold">OU</span>
+                <hr class="border-gray-300 border-t-2 flex-grow">
+            </div>
+            <div class="flex items-center justify-center mb-4">
+                <a href="{{path('connect_google_start')}}" class="flex items-center hover:bg-blue-400 text-white font-bold py-2 px-3 bg-blue-300 rounded-full focus:outline-none focus:shadow-outline">
+                    Continuer avec Google
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
