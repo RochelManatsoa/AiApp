@@ -45,14 +45,34 @@
             <!-- Ajoutez ici une icône de notifications -->
           </button>
         {% if app.user %}
-        <div class="flex items-center">
-        <img src="{{ app.user.avatar }}" alt="Avatar" class="w-10 h-10 rounded-full">
-        <div class="ml-4">
-            <h3 class="text-sm font-medium">{{ app.user.firstName }}</h3>
-            <p class="text-xs text-gray-500">{{ app.user.email }}</p>
-            <p class="text-xs text-gray-500"> <a href="{{path('app_logout')}}" class="text-gray-600">Déconnexion</a></p>
-        </div>
-        </div>
+          <div class="flex items-center">
+            <img src="{{ app.user.avatar }}" alt="Avatar" class="w-10 h-10 rounded-full">
+            <div class="ml-4">
+                <h3 class="text-sm font-medium">{{ app.user.firstName }}</h3>
+                <p class="text-xs text-gray-500">{{ app.user.email }}</p>
+                <p class="text-xs text-gray-500"> <a href="{{path('app_logout')}}" class="text-gray-600">Déconnexion</a></p>
+            </div>
+          </div>
+          <div class="relative inline-block text-left">
+            <div>
+              <button type="button" class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-600 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75" id="dropdown-menu-button" aria-expanded="false" aria-haspopup="true">
+                <svg class="w-5 h-5 ml-2 -mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M10 15l5-5H5z" />
+                </svg>
+              </button>
+            </div>
+
+            <div class="absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden" role="menu" aria-orientation="vertical" aria-labelledby="dropdown-menu-button" tabindex="-1" id="dropdown-menu">
+              <div class="py-1" role="none">
+                <a href="{{path('app_dashboard')}}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem" tabindex="-1" id="dropdown-menu-item-0">Tableau de bord</a>
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem" tabindex="-1" id="dropdown-menu-item-1">Mon profil</a>
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem" tabindex="-1" id="dropdown-menu-item-2">Mes paramètres</a>
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem" tabindex="-1" id="dropdown-menu-item-3">Mes messages</a>
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem" tabindex="-1" id="dropdown-menu-item-4">Mes notifications</a>
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem" tabindex="-1" id="dropdown-menu-item-5">Administration</a>
+              </div>
+            </div>
+          </div>
         </div>
         {% else %}
         <div class="bg-blue-500 text-white font-bold px-4 py-2 rounded-md">
@@ -72,4 +92,5 @@
     <body>
         {% block body %}{% endblock %}
     </body>
+    <script type="text/javascript" src="{{asset('assets/js/main.js')}}"></script>
 </html>

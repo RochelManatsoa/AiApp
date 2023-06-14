@@ -1,19 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Tableau de bord{% endblock %}
 
 {% block body %}
 <div class="flex">
   <!-- Barre latérale -->
-  <div class="w-64 bg-gray-800">
+  <div class="w-64 bg-gray-100">
     <!-- Logo -->
-    <div class="flex items-center justify-center h-16 text-white text-xl font-semibold">Logo</div>
+    <div class="flex items-center justify-center h-16 text-gray-600 text-xl font-semibold">Logo</div>
     <!-- Liens de navigation -->
     <nav class="mt-6">
-      <a href="#" class="block px-4 py-2 text-gray-400 hover:text-white">Accueil</a>
-      <a href="#" class="block px-4 py-2 text-gray-400 hover:text-white">Statistiques</a>
-      <a href="#" class="block px-4 py-2 text-gray-400 hover:text-white">Utilisateurs</a>
-      <a href="#" class="block px-4 py-2 text-gray-400 hover:text-white">Paramètres</a>
+      <a href="#" class="block px-4 py-2 text-gray-400 hover:text-gray-600">Accueil</a>
+      <a href="#" class="block px-4 py-2 text-gray-400 hover:text-gray-600">Statistiques</a>
+      <a href="#" class="block px-4 py-2 text-gray-400 hover:text-gray-600">Utilisateurs</a>
+      <a href="#" class="block px-4 py-2 text-gray-400 hover:text-gray-600">Paramètres</a>
     </nav>
   </div>
 
@@ -22,7 +22,6 @@
     <!-- En-tête -->
     <header class="flex justify-between mb-10">
       <h1 class="text-2xl font-bold">Tableau de bord</h1>
-      <button class="bg-indigo-600 text-white py-2 px-4 rounded-lg">Déconnexion</button>
     </header>
 
     <!-- Contenu du tableau de bord -->

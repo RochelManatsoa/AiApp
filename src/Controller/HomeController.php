@@ -23,4 +23,12 @@ class HomeController extends AbstractController
     {
         return $this->render('dashboard/index.html.twig', []);
     }
+
+    /**
+     * @Route("/cr/profile", name="app_create_profile")
+     */
+    public function profile(): Response
+    {
+        return $this->render('dashboard/profile.html.twig', []);
+    }
 }

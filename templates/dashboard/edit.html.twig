@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tableau de bord{% endblock %}
+
+{% block body %}
+<div class="max-w-xl mx-auto">
+  <!-- Étape 1 -->
+  <div class="mb-8">
+    <h2 class="text-xl font-bold mb-4">Étape 1 : Choix 1</h2>
+    <div class="flex space-x-4">
+      <label class="inline-flex items-center">
+        <input type="radio" class="form-radio text-indigo-600" name="step1" value="option1">
+        <span class="ml-2">Option 1</span>
+      </label>
+      <label class="inline-flex items-center">
+        <input type="radio" class="form-radio text-indigo-600" name="step1" value="option2">
+        <span class="ml-2">Option 2</span>
+      </label>
+      <label class="inline-flex items-center">
+        <input type="radio" class="form-radio text-indigo-600" name="step1" value="option3">
+        <span class="ml-2">Option 3</span>
+      </label>
+    </div>
+  </div>
+
+  <!-- Étape 2 -->
+  <div class="mb-8">
+    <h2 class="text-xl font-bold mb-4">Étape 2 : Choix 2</h2>
+    <div class="flex space-x-4">
+      <label class="inline-flex items-center">
+        <input type="radio" class="form-radio text-indigo-600" name="step2" value="option1">
+        <span class="ml-2">Option 1</span>
+      </label>
+      <label class="inline-flex items-center">
+        <input type="radio" class="form-radio text-indigo-600" name="step2" value="option2">
+        <span class="ml-2">Option 2</span>
+      </label>
+      <label class="inline-flex items-center">
+        <input type="radio" class="form-radio text-indigo-600" name="step2" value="option3">
+        <span class="ml-2">Option 3</span>
+      </label>
+    </div>
+  </div>
+
+  <!-- Étape 3 -->
+  <div>
+    <h2 class="text-xl font-bold mb-4">Étape 3 : Choix 3</h2>
+    <div class="flex space-x-4">
+      <label class="inline-flex items-center">
+        <input type="radio" class="form-radio text-indigo-600" name="step3" value="option1">
+        <span class="ml-2">Option 1</span>
+      </label>
+      <label class="inline-flex items-center">
+        <input type="radio" class="form-radio text-indigo-600" name="step3" value="option2">
+        <span class="ml-2">Option 2</span>
+      </label>
+      <label class="inline-flex items-center">
+        <input type="radio" class="form-radio text-indigo-600" name="step3" value="option3">
+        <span class="ml-2">Option 3</span>
+      </label>
+    </div>
+  </div>
+
+  <!-- Bouton de soumission -->
+  <div class="mt-8">
+    <button type="submit" class="py-2 px-4 bg-indigo-600 text-white rounded hover:bg-indigo-700">Soumettre</button>
+  </div>
+</div>
+</div>
+
+
+{% endblock %}
