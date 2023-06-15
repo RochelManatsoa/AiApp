@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -38,12 +40,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $firstName;
+    private $fullName;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $lastName;
+    private $googleId;
 
     /**
      * @ORM\Column(type="datetime")
@@ -55,9 +57,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $avatar;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Identity::class, mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $identity;
+
+    /**
+     * @ORM\OneToMany(targetEntity=SearchHistory::class, mappedBy="user")
+     */
+    private $searchHistories;
+
     public function __construct()
     {
         $this->createdAt = new \DateTime();
+        $this->searchHistories = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -149,30 +162,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    public function getFirstName(): ?string
-    {
-        return $this->firstName;
-    }
-
-    public function setFirstName(?string $firstName): self
-    {
-        $this->firstName = $firstName;
-
-        return $this;
-    }
-
-    public function getLastName(): ?string
-    {
-        return $this->lastName;
-    }
-
-    public function setLastName(?string $lastName): self
-    {
-        $this->lastName = $lastName;
-
-        return $this;
-    }
-
     public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->createdAt;
@@ -193,6 +182,82 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setAvatar(?string $avatar): self
     {
         $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    public function getFullName(): ?string
+    {
+        return $this->fullName;
+    }
+
+    public function setFullName(?string $fullName): self
+    {
+        $this->fullName = $fullName;
+
+        return $this;
+    }
+
+    public function getGoogleId(): ?string
+    {
+        return $this->googleId;
+    }
+
+    public function setGoogleId(?string $googleId): self
+    {
+        $this->googleId = $googleId;
+
+        return $this;
+    }
+
+    public function getIdentity(): ?Identity
+    {
+        return $this->identity;
+    }
+
+    public function setIdentity(?Identity $identity): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($identity === null && $this->identity !== null) {
+            $this->identity->setUser(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($identity !== null && $identity->getUser() !== $this) {
+            $identity->setUser($this);
+        }
+
+        $this->identity = $identity;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, SearchHistory>
+     */
+    public function getSearchHistories(): Collection
+    {
+        return $this->searchHistories;
+    }
+
+    public function addSearchHistory(SearchHistory $searchHistory): self
+    {
+        if (!$this->searchHistories->contains($searchHistory)) {
+            $this->searchHistories[] = $searchHistory;
+            $searchHistory->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSearchHistory(SearchHistory $searchHistory): self
+    {
+        if ($this->searchHistories->removeElement($searchHistory)) {
+            // set the owning side to null (unless already changed)
+            if ($searchHistory->getUser() === $this) {
+                $searchHistory->setUser(null);
+            }
+        }
 
         return $this;
     }

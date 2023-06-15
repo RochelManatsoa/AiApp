@@ -9,7 +9,6 @@ use Symfony\Component\Routing\RouterInterface;
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use KnpU\OAuth2ClientBundle\Client\Provider\GoogleClient;
-use KnpU\OAuth2ClientBundle\Client\Provider\FacebookClient;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use KnpU\OAuth2ClientBundle\Security\Authenticator\SocialAuthenticator;
@@ -61,8 +60,8 @@ class GoogleAuthenticator extends SocialAuthenticator
             $user = new User();
         }
         $user->setEmail($googleUser->getEmail());
-        $user->setFirstname($googleUser->getName());
-        $user->setPassword("default");
+        $user->setFullName($googleUser->getName());
+        $user->setGoogleId($googleUser->getId());
         $user->setAvatar($googleUser->getAvatar());
         $this->em->persist($user);
         $this->em->flush();
