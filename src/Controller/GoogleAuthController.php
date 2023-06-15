@@ -38,7 +38,7 @@ class GoogleAuthController extends AbstractController
                 'message' => "User not found"
             ]);
         }else{
-            return $this->redirectToRoute('dashboard');
+            return $this->redirectToRoute('app_create_profile');
         }
     }
 }
